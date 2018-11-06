@@ -73,7 +73,7 @@ head(kw, 3)
 - Una vez tenemos, `cargar_datos` requiere de un dataframe (tibble) con solo una fila, por lo que tendremos que hacer algo de limpieza previa:
 
 ```{r}
-final_dt <- kw[grepl("Elecciones al Parlamento Europeo. % sobre electores", kw$description), ]
+final_dt <- kw[grepl("Elecciones Locales. Absolutos", kw$description), ]
 elections <- cargar_datos(final_dt, encoding = 'latin1')
 ```
 
