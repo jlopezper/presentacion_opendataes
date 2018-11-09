@@ -28,7 +28,7 @@ output:
 
 - ¡Este paquete está plenamente abierto a colaboración! 
 - Está pensado para ser desarrollado por la comunidad R. Cualquier idea, sugerencia y mejora es altamente apreciada.
-- La idea del paquete es la de incluir tantos formatos de lectura como publicadores posibles.
+- Nuestra idea es que el package paulatinamente lea archivos de más publicadores y en más formatos.
 
 ## Opendataes: workflow
 
@@ -38,7 +38,7 @@ output:
 
 - Actualmente el paquete se encuentra bajo testeo y no se puede descargar desde CRAN.
 
-```{r, eval=TRUE}
+```{r, eval = TRUE, echo = FALSE, warning = FALSE}
 remotes::install_github("cimentadaj/opendataes")
 ```
 
@@ -70,11 +70,12 @@ head(kw, 3)
 
 ## Exploración a través de R (continuación)
 
-- Una vez tenemos, `cargar_datos` requiere de un dataframe (tibble) con solo una fila, por lo que tendremos que hacer algo de limpieza previa:
+- Una vez tenemos el dataframe con la descripción, `cargar_datos` requiere de un dataframe con solo una fila, por lo que tendremos que seleccionar solo aquella fila que deseamos:
 
 ```{r}
 final_dt <- kw[grepl("Elecciones Locales. Absolutos", kw$description), ]
 elections <- cargar_datos(final_dt, encoding = 'latin1')
+head(elections, 3)
 ```
 
 ## ¿Qué devuelve `cargar_datos`?
@@ -84,7 +85,7 @@ elections <- cargar_datos(final_dt, encoding = 'latin1')
 1. Los datos (si pudieron ser leídos).
 
 ```{r}
-elections$data
+elections$data[[1]]
 ```
 
 2. Metadata relativa a los mismos.
