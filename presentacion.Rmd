@@ -10,11 +10,12 @@ output:
 ---
   
 
-## Introducción (I): opendataes y datos.gob.es
+## Introducción (I): opendataes y datos.gob.es. Antecedentes
 
-- `opendataes` es un paquete que pretende interactuar con [datos.gob.es](https://datos.gob.es), un agregador de datos de instituciones públicas en España. 
+- [datos.gob.es](https://datos.gob.es) es un agregador de datos de instituciones públicas en España y tiene su origen en la [iniciativa Aporta](http://datos.gob.es/es/acerca-de-la-iniciativa-aporta), promovido por el Ministerio de Economía, con el fin de promocionar la apertura y reutilización de la información del sector público.
 - Estos datos incluyen información a nivel estatal, pero también autonómico y local.
 - En total, hay disponibles alrededor de 19.000 datasets.
+- `opendataes` es un paquete que pretende interactuar con [datos.gob.es](https://datos.gob.es). 
 - `opendataes` trata de interactuar y leer datos a través la API de la web.
 
 ## Introducción (II): Limitaciones
@@ -22,7 +23,7 @@ output:
 - En los inicios del desarrollo del paquete, se ambicionó con poder leer datos de cualquier institución y casi en cualquier formato.
 - Como suele ocurrir, la realidad no siempre casa con el deseo.
 - Se decidió que para disponer de un *working package* tendríamos que ser conservadores y sentar las bases para que paquete vaya creciendo paulatinamente y de forma sólida.
-- Ahora mismo se leen ficheros en formato *csv* y del Ayuntamiento de Barcelona, que nos permite asegurar la estandarización en el formato de los ficheros.
+- Ahora mismo se leen ficheros en formato *csv* (ver `permitted_formats`) y del Ayuntamiento de Barcelona (ver `publishers_available`), que nos permite asegurar la estandarización de los datos.
 - Es por ello que...
 
 ## Introducción (III): Colaboración
@@ -53,7 +54,7 @@ remotes::install_github("cimentadaj/opendataes")
 
 ## Exploración a través de R (continuación)
 
-- En primer lugar, vemos los publicadores disponibles a través del `publishers_available`. Filtramos por el Ayto. de Barcelona y exploramos los *keywords*:
+- En primer lugar, vemos los publicadores disponibles a través de `publishers_available`. Filtramos por el Ayto. de Barcelona y exploramos los *keywords*:
 
 ```{r, echo = FALSE}
 library(opendataes)
