@@ -97,12 +97,13 @@
           </hgroup>
   </slide>
 
-<slide class=""><hgroup><h2>Introducción (I): opendataes y datos.gob.es</h2></hgroup><article  id="introduccion-i-opendataes-y-datos.gob.es">
+<slide class=""><hgroup><h2>Introducción (I): opendataes y datos.gob.es. Antecedentes</h2></hgroup><article  id="introduccion-i-opendataes-y-datos.gob.es.-antecedentes">
 
 <ul>
-<li><code>opendataes</code> es un paquete que pretende interactuar con <a href='https://datos.gob.es' title=''>datos.gob.es</a>, un agregador de datos de instituciones públicas en España.</li>
+<li><a href='https://datos.gob.es' title=''>datos.gob.es</a> es un agregador de datos de instituciones públicas en España y tiene su origen en la <a href='http://datos.gob.es/es/acerca-de-la-iniciativa-aporta' title=''>iniciativa Aporta</a>, promovido por el Ministerio de Economía, con el fin de promocionar la apertura y reutilización de la información del sector público.</li>
 <li>Estos datos incluyen información a nivel estatal, pero también autonómico y local.</li>
 <li>En total, hay disponibles alrededor de 19.000 datasets.</li>
+<li><code>opendataes</code> es un paquete que pretende interactuar con <a href='https://datos.gob.es' title=''>datos.gob.es</a>.</li>
 <li><code>opendataes</code> trata de interactuar y leer datos a través la API de la web.</li>
 </ul>
 
@@ -112,6 +113,7 @@
 <li>En los inicios del desarrollo del paquete, se ambicionó con poder leer datos de cualquier institución y casi en cualquier formato.</li>
 <li>Como suele ocurrir, la realidad no siempre casa con el deseo.</li>
 <li>Se decidió que para disponer de un <em>working package</em> tendríamos que ser conservadores y sentar las bases para que paquete vaya creciendo paulatinamente y de forma sólida.</li>
+<li>Ahora mismo se leen ficheros en formato <em>csv</em> (ver <code>permitted_formats</code>) y del Ayuntamiento de Barcelona (ver <code>publishers_available</code>), que nos permite asegurar la estandarización de los datos.</li>
 <li>Es por ello que&#8230;</li>
 </ul>
 
@@ -152,7 +154,7 @@
 </article></slide><slide class=""><hgroup><h2>Exploración a través de R (continuación)</h2></hgroup><article  id="exploracion-a-traves-de-r-continuacion">
 
 <ul>
-<li>En primer lugar, vemos los publicadores disponibles a través del <code>publishers_available</code>. Filtramos por el Ayto. de Barcelona y exploramos los <em>keywords</em>:</li>
+<li>En primer lugar, vemos los publicadores disponibles a través de <code>publishers_available</code>. Filtramos por el Ayto. de Barcelona y exploramos los <em>keywords</em>:</li>
 </ul>
 
 <pre class = 'prettyprint lang-r'>pb_code &lt;- publishers_available$publisher_code[publishers_available$publishers
@@ -164,9 +166,9 @@ head(kw, 3)</pre>
 <pre >## # A tibble: 3 x 5
 ##   description         publisher    is_readable path_id       url          
 ##   &lt;chr&gt;               &lt;chr&gt;        &lt;lgl&gt;       &lt;chr&gt;         &lt;chr&gt;        
-## 1 Elecciones al Parl… Ayuntamient… TRUE        l01080193-el… http://datos…
-## 2 Elecciones al Parl… Ayuntamient… TRUE        l01080193-el… http://datos…
-## 3 Elecciones al Parl… Ayuntamient… TRUE        l01080193-el… http://datos…</pre>
+## 1 Elecciones al Parl~ Ayuntamient~ TRUE        l01080193-el~ http://datos~
+## 2 Elecciones al Parl~ Ayuntamient~ TRUE        l01080193-el~ http://datos~
+## 3 Elecciones al Parl~ Ayuntamient~ TRUE        l01080193-el~ http://datos~</pre>
 
 </article></slide><slide class=""><hgroup><h2>Exploración a través de R (continuación)</h2></hgroup><article  id="exploracion-a-traves-de-r-continuacion-1">
 
@@ -190,11 +192,11 @@ elections &lt;- cargar_datos(final_dt, encoding = &#39;latin1&#39;)</pre>
 <pre >## # A tibble: 5 x 10
 ##     DTE BARRIS ELECTORS VOTANTS `PSC-PM`    CIU     PP `ICV-EUIA-EPM`
 ##   &lt;int&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;          &lt;dbl&gt;
-## 1     1 1. el…     27.0    9.57     3.34   1.64   1.45           1.17
-## 2     1 2. el…     11.1    4.45     1.30 969    525            681   
-## 3     1 3. la…     10.7    4.30     1.58 789    486            369   
-## 4     1 4. Sa…     14.1    6.32     1.91   1.36 808            958   
-## 5     2 5. el…     22.9   12.8      3.25   3.72   1.83           1.24
+## 1     1 1. el~     27.0    9.57     3.34   1.64   1.45           1.17
+## 2     1 2. el~     11.1    4.45     1.30 969    525            681   
+## 3     1 3. la~     10.7    4.30     1.58 789    486            369   
+## 4     1 4. Sa~     14.1    6.32     1.91   1.36 808            958   
+## 5     2 5. el~     22.9   12.8      3.25   3.72   1.83           1.24
 ## # ... with 2 more variables: `ERC-AM` &lt;dbl&gt;, `ALTRES(UN)` &lt;dbl&gt;</pre>
 
 </article></slide><slide class=""><hgroup><h2>¿Qué devuelve <code>cargar_datos</code>? (II)</h2></hgroup><article  id="que-devuelve-cargar_datos-ii">
@@ -206,9 +208,9 @@ elections &lt;- cargar_datos(final_dt, encoding = &#39;latin1&#39;)</pre>
 <pre >## # A tibble: 3 x 8
 ##   keywords language description url   date_issued         date_modified
 ##   &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;       &lt;chr&gt; &lt;dttm&gt;              &lt;chr&gt;        
-## 1 Absolut… es       Elecciones… http… 2013-03-13 23:00:00 No modificat…
-## 2 Absolut… ca       Eleccions … http… 2013-03-13 23:00:00 No modificat…
-## 3 Absolut… en       Local Elec… http… 2013-03-13 23:00:00 No modificat…
+## 1 Absolut~ es       Elecciones~ http~ NA                  No modificat~
+## 2 Absolut~ ca       Eleccions ~ http~ NA                  No modificat~
+## 3 Absolut~ en       Local Elec~ http~ NA                  No modificat~
 ## # ... with 2 more variables: publisher &lt;chr&gt;, publisher_data_url &lt;chr&gt;</pre></article></slide>
 
 

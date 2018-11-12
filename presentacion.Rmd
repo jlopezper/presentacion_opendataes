@@ -40,7 +40,7 @@ output:
 
 - Actualmente el paquete se encuentra bajo testeo y no se puede descargar desde CRAN.
 
-```{r, eval = TRUE, warning = FALSE, message = FALSE}
+```{r, eval = TRUE, warning = FALSE, message = FALSE, echo=TRUE}
 remotes::install_github("cimentadaj/opendataes")
 ```
 
