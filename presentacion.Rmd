@@ -1,5 +1,5 @@
 ---
-title: "Opendataes"
+title: "opendataes"
 author: "Jorge López y Jorge Cimentada"
 date: "14 de noviembre de 2018"
 output:
@@ -8,14 +8,13 @@ output:
   slidy_presentation: default
   beamer_presentation: default
 ---
-  
 
 ## Introducción (I): opendataes y datos.gob.es. Antecedentes
 
 - [datos.gob.es](https://datos.gob.es) es un agregador de datos de instituciones públicas en España y tiene su origen en la [iniciativa Aporta](http://datos.gob.es/es/acerca-de-la-iniciativa-aporta), promovido por el Ministerio de Economía, con el fin de promocionar la apertura y reutilización de la información del sector público.
 - Estos datos incluyen información a nivel estatal, pero también autonómico y local.
 - En total, hay disponibles alrededor de 19.000 datasets.
-- `opendataes` es un paquete que pretende interactuar con la API de [datos.gob.es](https://datos.gob.es). 
+- `opendataes` es un paquete que pretende interactuar con la API de [datos.gob.es](https://datos.gob.es).
 
 ## Introducción (II): Limitaciones
 
@@ -31,15 +30,33 @@ output:
 - Está pensado para ser desarrollado por la comunidad R. Cualquier idea, sugerencia y mejora es altamente apreciada.
 - Nuestra idea es que el package paulatinamente lea archivos de más publicadores y en más formatos.
 
-## Opendataes: workflow
+Como colaboro? [https://github.com/cimentadaj/opendataes](https://github.com/cimentadaj/opendataes)
 
-<img src="opendataes_diagram.jpeg" align="center" height="550" width="955"/>
+## opendataes: workflow
+
+<img src="img/opendataes_diagram.jpeg" align="center" height="600" width="955"/>
+
+## opendataes: Llamadas a la API
+
+<img src="img/opendataes_diagram_step1.jpg" align="center" height="250" width="1050"/>
+
+## opendataes: Extraer metadata
+
+<img src="img/opendataes_diagram_step2.jpg" align="center" height="350" width="1050"/>
+
+## opendataes: Extraer datos
+
+<img src="img/opendataes_diagram_step3.jpg" align="center" height="550" width="955"/>
+
+## opendataes: Resultado final
+
+<img src="img/opendataes_diagram_step4.jpg" align="center" height="550" width="955"/>
 
 ## Instalación y uso básico
 
 - Actualmente el paquete se encuentra bajo testeo y no se puede descargar desde CRAN.
 
-```{r, eval = TRUE, warning = FALSE, message = FALSE, echo=TRUE}
+```{r, eval = FALSE, warning = FALSE, message = FALSE, echo=TRUE}
 remotes::install_github("cimentadaj/opendataes")
 ```
 
@@ -47,22 +64,19 @@ remotes::install_github("cimentadaj/opendataes")
 
 1. Búsqueda a través de la web:
 
-<img src="path_id.png" align="center" height="50" width="1000"/>
+<img src="img/path_id.png" align="center" height="50" width="1000"/>
 
 2. Exploración a través de R: Alternativamente, `opendataes` permite realizar la búsqueda por *keywords*. 
 
-## Exploración a través de R (continuación)
+## Exploración a través de R
 
 - En primer lugar, vemos los publicadores disponibles a través de `publishers_available`. Filtramos por el Ayto. de Barcelona y exploramos los *keywords*:
 
-```{r, echo = FALSE}
-library(opendataes)
-```
-
-
 ```{r}
-pb_code <- publishers_available$publisher_code[publishers_available$publishers
-                                               == 'Ayuntamiento de Barcelona']
+library(opendataes)
+
+pb_code <- publishers_available$publisher_code[publishers_available$publishers ==
+                                                 'Ayuntamiento de Barcelona']
 
 kw <- explorar_keywords('elecciones', pb_code)
 head(kw, 3)
@@ -96,5 +110,32 @@ head(elections$data[[1]], 5)
 elections$metadata
 ```
 
+## Exploración a través de la web
 
+```{r}
+path_id <- "l01080193-elecciones-al-parlamento-europeo-sobre-electores"
+elections <- cargar_datos(path_id, encoding = 'latin1')
+
+elections
+```
+
+## ¿Qué devuelve `cargar_datos`? (I)
+
+```{r}
+elections$metadata
+```
+
+## ¿Qué devuelve `cargar_datos`? (II)
+
+```{r}
+head(elections$data[[1]], 5)
+```
+
+## Como colaborar?
+
+- Leer **ambos** vignettes en la página del paquete: [https://cimentadaj.github.io/opendataes/](https://cimentadaj.github.io/opendataes/)
+- Abrir issues en la página de Github: [https://github.com/cimentadaj/opendataes/issues](https://github.com/cimentadaj/opendataes/issues)
+- Clonar el paquete desde GH y hacer un pull request: [https://github.com/cimentadaj/opendataes/pulls](https://github.com/cimentadaj/opendataes/pulls)
+
+**Queremos que el paquete sea mantenido por la comunidad, cualquier iniciativa es muy bienvenida**
 
