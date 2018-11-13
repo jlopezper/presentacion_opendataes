@@ -15,8 +15,7 @@ output:
 - [datos.gob.es](https://datos.gob.es) es un agregador de datos de instituciones públicas en España y tiene su origen en la [iniciativa Aporta](http://datos.gob.es/es/acerca-de-la-iniciativa-aporta), promovido por el Ministerio de Economía, con el fin de promocionar la apertura y reutilización de la información del sector público.
 - Estos datos incluyen información a nivel estatal, pero también autonómico y local.
 - En total, hay disponibles alrededor de 19.000 datasets.
-- `opendataes` es un paquete que pretende interactuar con [datos.gob.es](https://datos.gob.es). 
-- `opendataes` trata de interactuar y leer datos a través la API de la web.
+- `opendataes` es un paquete que pretende interactuar con la API de [datos.gob.es](https://datos.gob.es). 
 
 ## Introducción (II): Limitaciones
 
