@@ -38,13 +38,13 @@ Por suerte.... TIENE UNA API!
 
 Yo creo que todavía no entienden la magnitud de los datos....
 
-<img src="img/mapa_españa.png" align="center" height="350" width="800"/>
+<img src="img/mapa_espana.png" align="center" height="350" width="800"/>
 
 ## datos.gob.es
 
 No, en serio....
 
-<img src="img/mapa_españa_dos.png" align="center" height="450" width="900"/>
+<img src="img/mapa_espana_dos.png" align="center" height="450" width="900"/>
 
 ## opendataes
 
